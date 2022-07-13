@@ -1,6 +1,6 @@
 {
     "name": "iodigital-criticalcss",
-    "version": "1.0.0",
+    "version": "1.0.2",
     "description": "NPM package to generate the critical css of a Magento 2 shop based on the given urls",
     "files": [
         "generate.js"
@@ -11,9 +11,9 @@
     },
     "author": "IO Digital",
     "license": "ISC",
-    "devDependencies": {
+    "dependencies": {
         "critical": "^4.0.1",
         "node-fetch": "^2.6.7"
     },
-    "dependencies": {}
+    "devDependencies": {}
 }
