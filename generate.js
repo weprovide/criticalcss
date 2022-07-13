@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 const critical = require('critical');
 const { getConfigFile, getClosestHeight } = require('./helpers');
 const criticalcssConfig = getConfigFile();
