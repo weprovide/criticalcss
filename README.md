@@ -1,4 +1,4 @@
-# IODigital_CriticalCss
+# iodigital-criticalcss
 This node module makes it possible to generate critical css bundles from different pages in different viewports. It is based on [GitHub - addyosmani/critical: Extract & Inline Critical-path CSS in HTML pages](https://github.com/addyosmani/critical) 
 
 ## Install
