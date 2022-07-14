@@ -13,23 +13,27 @@ if (!criticalcssConfig) {
 }
 
 // The pages you want the critical css from (multiple pages and themes possible)
-const pages = criticalcssConfig?.pages || [],
-    widths = criticalcssConfig?.viewportWidths || [];
+const pages = criticalcssConfig?.pages || [];
+let dimensions = criticalcssConfig?.dimensions || [];
 
 // The dimensions you want critical css from.
-const dimensions = widths?.map((width) => ({
-    height: getClosestHeight(width)?.height,
-    width,
+dimensions = dimensions?.map((dimension) => ({
+    width: dimension?.width,
+    height: dimension?.height ?? getClosestHeight(dimension?.width)?.height,
 }));
 
-pages?.forEach(async (page) => {
-    await critical.generate({
+console.log('Starting to create critical css bundles..')
+
+Promise.all(pages?.map(async (page) => {
+    return critical.generate({
         inline: false, src: page.src, css: page.css, target: {
             css: page.target,
         }, dimensions: dimensions,
-    }, (err => {
-        if (err !== null) {
-            console.log(err);
-        }
-    }));
+    });
+})).catch((error) => {
+    console.warn('Something went wrong while generating critical css:', error);
+}).finally(() => {
+    console.log('Finished generating critical css bundles!')
 });
+
+

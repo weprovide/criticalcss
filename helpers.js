@@ -10,24 +10,30 @@ const getConfigFile = () => {
     }
 
     if (!criticalcssConfig?.pages || criticalcssConfig?.pages.length === 0) {
-        throw new Error('Error: You need to provide pages as configuration (pages: [{"src": "https://www.noppies.com/nl-nl", "target": "app/design/frontend/WeProvide/Noppies/web/css/cms-critical.css"}])');
+        throw new Error('Error: You need to provide pages as configuration (e.g. pages: [{"src": "https://www.site.com/", "target": "app/design/frontend/*company*/theme/web/css/cms-critical.css"}])');
     }
-    if (!criticalcssConfig?.viewportWidths || criticalcssConfig?.viewportWidths.length === 0) {
-        throw new Error('Error: You need to provide viewport widths as configuration (viewportWidths: [320, 767, 992, 1200, 1424])');
+    if (!criticalcssConfig?.dimensions || criticalcssConfig?.dimensions.length === 0) {
+        throw new Error('Error: You need to provide dimensions as configuration ("dimensions": [{ "width": 320 },{ "width": 767 },{ "width": 992 },{ "width": 1200 },{ "width": 1424 }])');
     }
     return criticalcssConfig;
-}
 
+}
 
 // Most used viewports
 // Widths and heights
 const standardViewports = [
+    { width: 2560, height: 1440 },
     { width: 1920, height: 1080 },
-    { width: 1366, height: 768 },
-    { width: 360, height: 640 },
+    { width: 1680, height: 1050 },
+    { width: 1280, height: 1024 },
+    { width: 1600, height: 900 },
+    { width: 1440, height: 900 },
     { width: 414, height: 896 },
     { width: 1536, height: 864 },
+    { width: 1366, height: 768 },
+    { width: 1280, height: 720 },
     { width: 375, height: 667 },
+    { width: 360, height: 640 },
 ];
 
 const getClosestHeight = (target) =>
