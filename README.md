@@ -23,7 +23,7 @@ This configuration should contain your urls and dimensions for the viewport. Exa
         },
         {
             "src": "https://site.com/PDP.html",
-            "target": "app/design/frontend/WeProvide/Noppies/web/css/product-critical.css"
+            "target": "app/design/frontend/THEMEPATH/THEMEPATH/web/css/product-critical.css"
         },
         {
             "src": "https://site.com/checkout/#shipping",
