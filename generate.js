@@ -12,6 +12,8 @@ if (!criticalcssConfig) {
     return;
 }
 
+const domain = process.env.DOMAIN || criticalcssConfig?.domain;
+
 // The pages you want the critical css from (multiple pages and themes possible)
 const pages = criticalcssConfig?.pages || [];
 let dimensions = criticalcssConfig?.dimensions || [];
@@ -26,7 +28,7 @@ console.log('Starting to create critical css bundles..')
 
 Promise.all(pages?.map(async (page) => {
     return critical.generate({
-        inline: false, src: page.src, css: page.css, target: {
+        inline: false, src: domain + page.src, css: page.css, target: {
             css: page.target,
         }, dimensions: dimensions,
     });
@@ -35,5 +37,3 @@ Promise.all(pages?.map(async (page) => {
 }).finally(() => {
     console.log('Finished generating critical css bundles!')
 });
-
-

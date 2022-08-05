@@ -1,5 +1,5 @@
-# iodigital-criticalcss
-This node module makes it possible to generate critical css bundles from different pages in different viewports. It is based on [GitHub - addyosmani/critical: Extract & Inline Critical-path CSS in HTML pages](https://github.com/addyosmani/critical) 
+# IODigital_CriticalCss
+This node module makes it possible to generate critical css bundles from different pages in different viewports. It is based on [GitHub - addyosmani/critical: Extract & Inline Critical-path CSS in HTML pages](https://github.com/addyosmani/critical)
 
 ## Install
 `npm install iodigital-criticalcss`
@@ -12,21 +12,22 @@ This configuration should contain your urls and dimensions for the viewport. Exa
 
 ```
 {
+    "domain": "https://site.com",
     "pages": [
         {
-            "src": "https://site.com/",
+            "src": "/",
             "target": "app/design/frontend/THEMEPATH/THEMEPATH/web/css/cms-critical.css"
         },
         {
-            "src": "https://www.site.com/category/",
+            "src": "/category/",
             "target": "app/design/frontend/THEMEPATH/THEMEPATH/web/css/category-critical.css"
         },
         {
-            "src": "https://site.com/PDP.html",
+            "src": "/PDP.html",
             "target": "app/design/frontend/THEMEPATH/THEMEPATH/web/css/product-critical.css"
         },
         {
-            "src": "https://site.com/checkout/#shipping",
+            "src": "/checkout/#shipping",
             "target": "app/design/frontend/THEMEPATH/THEMEPATH/web/css/checkout-critical.css"
         }
     ],
@@ -45,16 +46,10 @@ Dimensions only require widths (this differs per project). The height will be ch
 
 ```
 const standardViewports = [
-    { width: 2560, height: 1440 },
     { width: 1920, height: 1080 },
-    { width: 1680, height: 1050 },
-    { width: 1280, height: 1024 },
-    { width: 1600, height: 900 },
-    { width: 1440, height: 900 },
     { width: 414, height: 896 },
     { width: 1536, height: 864 },
     { width: 1366, height: 768 },
-    { width: 1280, height: 720 },
     { width: 375, height: 667 },
     { width: 360, height: 640 },
 ];
@@ -72,4 +67,21 @@ If you want to explicitly use a set height, you may add it to the dimensions arr
 
 ### Running it
 
-To use this package, you need to run: `iodigital-criticalcss` in the command line.
+To use this package, you need to run: `npx iodigital-criticalcss` in the command line.
+
+#### Using environment variables
+
+You can set the domain as environment variable and run the iodigital-criticalcss command against a variable domain.
+
+```
+export DOMAIN=https://www.google.com
+npx iodigital-criticalcss
+```
+
+or
+
+```
+DOMAIN=https://www.google.com npx iodigital-criticalcss
+```
+
+This will overwrite the domain set in the config json file.
