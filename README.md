@@ -13,6 +13,7 @@ This configuration should contain your urls and dimensions for the viewport. Exa
 ```
 {
     "domain": "https://site.com",
+    "renderWaitTime": 2500,
     "pages": [
         {
             "src": "/",
