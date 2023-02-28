@@ -1,6 +1,6 @@
 {
     "name": "iodigital-criticalcss",
-    "version": "1.0.5",
+    "version": "1.0.6",
     "description": "NPM package to generate critical css via a configuration file",
     "files": [
         "helpers.js",
