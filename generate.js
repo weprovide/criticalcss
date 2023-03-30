@@ -14,6 +14,8 @@ if (!criticalcssConfig) {
 
 const domain = process.env.DOMAIN || criticalcssConfig?.domain;
 const waitBeforeRender = process.env.RENDER_WAIT_TIME || criticalcssConfig?.renderWaitTime || 2500;
+const forceIncludeList = criticalcssConfig?.forceInclude || [];
+const forceExcludeList = criticalcssConfig?.forceExclude || [];
 
 // The pages you want the critical css from (multiple pages and themes possible)
 const pages = criticalcssConfig?.pages || [];
@@ -38,7 +40,9 @@ Promise.all(pages?.map(async (page) => {
         },
         dimensions: dimensions,
         penthouse: {
-            renderWaitTime: waitBeforeRender
+            renderWaitTime: waitBeforeRender,
+            forceInclude: forceIncludeList,
+            forceExclude: forceExcludeList
         }
     });
 })).catch((error) => {
