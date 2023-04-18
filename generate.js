@@ -27,13 +27,10 @@ dimensions = dimensions?.map((dimension) => ({
     height: dimension?.height ?? getClosestHeight(dimension?.width)?.height,
 }));
 
-console.log('Starting to create critical css bundles...');
-
-Promise.all(pages?.map(async (page) => {
-    console.log(' > ' + domain + page.src);
+var generatingCriticalCss = function (page, pageSrc) {
     return critical.generate({
         inline: false,
-        src: domain + page.src,
+        src: domain + pageSrc,
         css: page.css,
         target: {
             css: page.target,
@@ -44,6 +41,19 @@ Promise.all(pages?.map(async (page) => {
             forceInclude: forceIncludeList,
             forceExclude: forceExcludeList
         }
+    });
+}
+
+console.log('Starting to create critical css bundles...');
+
+Promise.all(pages?.map(async (page) => {
+    if (!Array.isArray(page.src)) {
+        page.src = [page.src];
+    }
+
+    page.src.forEach(pageSrc => {
+        console.log(' > ' + domain + pageSrc);
+        generatingCriticalCss(page, pageSrc);
     });
 })).catch((error) => {
     console.warn('Something went wrong while generating critical css:', error);
