@@ -72,8 +72,13 @@ To use this package, you need to run: `npx iodigital-criticalcss` in the command
 
 #### Using environment variables
 
-You can set the domain as environment variable and run the iodigital-criticalcss command against a variable domain.
+There are some environment variables that can be used while generating the criticalcss.
 
+##### Available environment variables
+- DOMAIN: When domain is set, this will be used to render criticalcss for.
+- CRITICALCSS_CONFIG_FILE: You can alter the criticalcss configuration file that will be used, can be useful when deploying to more than one environment.
+
+##### How to use environment variables
 ```
 export DOMAIN=https://www.google.com
 npx iodigital-criticalcss
@@ -84,5 +89,3 @@ or
 ```
 DOMAIN=https://www.google.com npx iodigital-criticalcss
 ```
-
-This will overwrite the domain set in the config json file.

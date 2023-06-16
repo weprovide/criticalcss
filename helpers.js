@@ -3,10 +3,11 @@ const appRoot = process.cwd();
 
 const getConfigFile = () => {
     let criticalcssConfig = null;
+    let criticalcssConfigFile = process.env.CRITICALCSS_CONFIG_FILE || 'criticalcss.config.json';
     try {
-        criticalcssConfig = JSON.parse(fs.readFileSync(appRoot + '/criticalcss.config.json', 'utf8'));
+        criticalcssConfig = JSON.parse(fs.readFileSync(appRoot + '/' + criticalcssConfigFile, 'utf8'));
     } catch (error) {
-        throw new Error('Error: You probably forgot to add a criticalcss.config.json in the root of your project..')
+        throw new Error('Error: You probably forgot to add a ' + criticalcssConfigFile + ' in the root of your project.')
     }
 
     if (!criticalcssConfig?.pages || criticalcssConfig?.pages.length === 0) {
