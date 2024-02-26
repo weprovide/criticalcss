@@ -1,6 +1,6 @@
 {
     "name": "iodigital-criticalcss",
-    "version": "1.0.8",
+    "version": "1.0.9",
     "description": "NPM package to generate critical css via a configuration file",
     "files": [
         "helpers.js",
@@ -8,7 +8,7 @@
     ],
     "bin": "generate.js",
     "author": "IO Digital",
-    "license": "ISC",
+    "license": "proprietary",
     "dependencies": {
         "critical": "^4.0.1"
     }
