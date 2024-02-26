@@ -14,6 +14,7 @@ if (!criticalcssConfig) {
 
 const domain = process.env.DOMAIN || criticalcssConfig?.domain;
 const waitBeforeRender = process.env.RENDER_WAIT_TIME || criticalcssConfig?.renderWaitTime || 2500;
+const penthouseTimeout = process.env.PENTHOUSE_TIMEOUT || criticalcssConfig?.penthouseTimeout || 30000;
 const forceIncludeList = criticalcssConfig?.forceInclude || [];
 const forceExcludeList = criticalcssConfig?.forceExclude || [];
 
@@ -40,6 +41,7 @@ Promise.all(pages?.map(async (page) => {
         },
         dimensions: dimensions,
         penthouse: {
+            timeout: penthouseTimeout,
             renderWaitTime: waitBeforeRender,
             forceInclude: forceIncludeList,
             forceExclude: forceExcludeList
@@ -47,6 +49,7 @@ Promise.all(pages?.map(async (page) => {
     });
 })).catch((error) => {
     console.warn('Something went wrong while generating critical css:', error);
+    throw error;
 }).finally(() => {
     console.log('Finished generating critical css bundles!')
 });
