@@ -1,6 +1,6 @@
 {
     "name": "iodigital-criticalcss",
-    "version": "1.0.9",
+    "version": "1.0.10",
     "description": "NPM package to generate critical css via a configuration file",
     "files": [
         "helpers.js",
@@ -11,5 +11,8 @@
     "license": "proprietary",
     "dependencies": {
         "critical": "^4.0.1"
+    },
+    "volta": {
+        "node": "14.21.3"
     }
 }

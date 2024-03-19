@@ -30,26 +30,30 @@ dimensions = dimensions?.map((dimension) => ({
 
 console.log('Starting to create critical css bundles...');
 
-Promise.all(pages?.map(async (page) => {
-    console.log(' > ' + domain + page.src);
-    return critical.generate({
-        inline: false,
-        src: domain + page.src,
-        css: page.css,
-        target: {
-            css: page.target,
-        },
-        dimensions: dimensions,
-        penthouse: {
-            timeout: penthouseTimeout,
-            renderWaitTime: waitBeforeRender,
-            forceInclude: forceIncludeList,
-            forceExclude: forceExcludeList
-        }
-    });
-})).catch((error) => {
-    console.warn('Something went wrong while generating critical css:', error);
-    throw error;
-}).finally(() => {
-    console.log('Finished generating critical css bundles!')
-});
+function processPage() {
+    page = pages.shift();
+    if (page) {
+        console.log(' > ' + domain + page.src);
+        critical.generate({
+            inline: false,
+            src: domain + page.src,
+            css: page.css,
+            target: {
+                css: page.target,
+            },
+            dimensions: dimensions,
+            penthouse: {
+                timeout: penthouseTimeout,
+                renderWaitTime: waitBeforeRender,
+                forceInclude: forceIncludeList,
+                forceExclude: forceExcludeList
+            }
+        }).then(result => {
+            console.log(' ... has been generated');
+            processPage();
+        });
+    }
+}
+processPage();
+
+console.log('Finished generating critical css bundles!');
